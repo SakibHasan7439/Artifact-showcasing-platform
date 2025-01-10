@@ -6,7 +6,7 @@ const ArtifactCard = ({ artifact }) => {
     const {name, imageUrl, like_count, category, present_location, _id} = artifact;
   return (
       <FramerAnimeComponent className="col-span-12 md:col-span-6">
-        <div className="card rounded-md p-4 text-white bg-[#705e4c] border">
+        <div className="card rounded-md h-[671px] md:h-[750px] lg:h-[801px] p-4 text-white bg-[#705e4c] border">
         <figure>
           <img className="h-[350px] lg:h-[500px] rounded-md w-full"
             src={imageUrl}

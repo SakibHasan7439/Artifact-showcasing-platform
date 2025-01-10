@@ -45,7 +45,12 @@ const Nav = () => {
           >
             <NavLink to={"/"}>Home</NavLink>
             <NavLink to={"/all-artifacts"}>All Artifacts</NavLink>
-            <NavLink to={"/add-artifacts"}>Add Artifact</NavLink>
+            {
+              user && <>
+              <NavLink to={"/add-artifacts"}>Add Artifact</NavLink>
+              <NavLink to={"/liked-artifacts"}>Liked Artifact</NavLink>
+              </>
+            }
           </ul>
         </div>
         <img className="w-24 md:w-48" src={logo} alt="" />
@@ -54,7 +59,12 @@ const Nav = () => {
         <ul className="menu gap-6 menu-horizontal px-1">
             <NavLink to={"/"} className={"md:text-lg border-r-2 pr-5 text-white"}>Home</NavLink>
             <NavLink to={"/all-artifacts"} className={"md:text-lg border-r-2 pr-5 text-white"}>All Artifacts</NavLink>
-            <NavLink to={"/add-artifacts"} className={"md:text-lg text-white"}>Add Artifact</NavLink>
+            {
+              user && <>
+                <NavLink className={"md:text-lg text-white"} to={"/add-artifacts"}>Add Artifact</NavLink>
+                <NavLink className={"md:text-lg text-white"} to={"/liked-artifacts"}>Liked Artifact</NavLink>
+              </>
+            }
         </ul>
       </div>
       <div className="navbar-end">
