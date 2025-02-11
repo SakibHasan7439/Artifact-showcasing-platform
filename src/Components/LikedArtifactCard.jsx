@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
-import FramerAnimeComponent from "./FramerAnimeComponent";
 
 /* eslint-disable react/prop-types */
 const LikedArtifactCard = ({artifact}) => {
-    const {name, imageUrl, like_count, category, present_location, _id} = artifact;
+    const {name, imageUrl, like_count, _id} = artifact;
   return (
         <tr>
         <td>

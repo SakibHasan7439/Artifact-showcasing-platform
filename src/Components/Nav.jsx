@@ -2,96 +2,146 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import toast from "react-hot-toast";
-import logo from "../assets/artifacts_logo.png"
+import logo from "../assets/artifacts_logo.png";
 import { FaSignOutAlt } from "react-icons/fa";
-import "./sharedStyles.css"
+import "./sharedStyles.css";
 
 const Nav = () => {
   const { user, userSignOut } = useContext(AuthContext);
 
-  const handleSubmitSignOut = () =>{
+  const handleSubmitSignOut = () => {
     userSignOut()
-    .then(()=>{
-      toast.success("Signed Out Successfully");
-    })
-    .catch((err)=>{
-      toast.error(err.message);
-    })
-  }
+      .then(() => {
+        toast.success("Signed Out Successfully");
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  };
 
   return (
-    <div className="navbar bg-[#c4a484] shadow-md z-50 fixed shadow-black">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
-          </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm gap-4 dropdown-content bg-base-100 rounded-box z-[100] mt-3 w-52 p-2 shadow"
-          >
-            <NavLink to={"/"}>Home</NavLink>
-            <NavLink to={"/all-artifacts"}>All Artifacts</NavLink>
-            {
-              user && <>
-              <NavLink to={"/add-artifacts"}>Add Artifact</NavLink>
-              <NavLink to={"/liked-artifacts"}>Liked Artifact</NavLink>
-              </>
-            }
-          </ul>
-        </div>
-        <img className="w-24 md:w-48" src={logo} alt="" />
-      </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu gap-6 menu-horizontal px-1">
-            <NavLink to={"/"} className={"md:text-lg border-r-2 pr-5 text-white"}>Home</NavLink>
-            <NavLink to={"/all-artifacts"} className={"md:text-lg border-r-2 pr-5 text-white"}>All Artifacts</NavLink>
-            {
-              user && <>
-                <NavLink className={"md:text-lg text-white"} to={"/add-artifacts"}>Add Artifact</NavLink>
-                <NavLink className={"md:text-lg text-white"} to={"/liked-artifacts"}>Liked Artifact</NavLink>
-              </>
-            }
-        </ul>
-      </div>
-      <div className="navbar-end">
-          {
-            user ? <>    
-              <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full tooltip tooltip-right" data-tip={user?.displayName}>
-                <img
-                  alt="user image"
-                  src={user?.photoURL} />
-              </div>
+    <div className=" bg-[#c4a484] w-full shadow-md z-50 fixed shadow-black">
+      <div className="navbar max-w-7xl w-full mx-auto">
+        <div className="navbar-start">
+          <div className="dropdown">
+            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm gap-2 z-[100] dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow">
-              <Link className="hover:bg-gray-200 p-2 font-semibold" to={"/my-artifacts"}>My Artifacts</Link>
-              <Link to={"/liked-artifacts"} className="hover:bg-gray-200 font-semibold p-2">Liked Artifacts</Link>
+              className="menu menu-sm gap-4 dropdown-content bg-base-100 rounded-box z-[100] mt-3 w-52 p-2 shadow"
+            >
+              <NavLink to={"/"}>Home</NavLink>
+              <NavLink to={"/all-artifacts"}>All Artifacts</NavLink>
+              <NavLink to={"/about-us"}>About Us</NavLink>
+              {user && (
+                <>
+                  <NavLink to={"/add-artifacts"}>Add Artifact</NavLink>
+                  <NavLink to={"/liked-artifacts"}>Liked Artifact</NavLink>
+                </>
+              )}
             </ul>
+          </div>
+          <img className="w-24 md:w-48" src={logo} alt="" />
+        </div>
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu gap-6 menu-horizontal px-1">
+            <NavLink
+              to={"/"}
+              className={"md:text-lg border-r-2 pr-5 text-white"}
+            >
+              Home
+            </NavLink>
+            <NavLink
+              to={"/all-artifacts"}
+              className={"md:text-lg border-r-2 pr-5 text-white"}
+            >
+              All Artifacts
+            </NavLink>
+
+            <NavLink to={"/about-us"} className={"md:text-lg pr-5 text-white"}>
+              About Us
+            </NavLink>
+
+            {user && (
+              <>
+                <NavLink
+                  className={"md:text-lg text-white border-l-2 "}
+                  to={"/add-artifacts"}
+                >
+                  Add Artifact
+                </NavLink>
+                <NavLink
+                  className={"md:text-lg text-white border-l-2"}
+                  to={"/liked-artifacts"}
+                >
+                  Liked Artifact
+                </NavLink>
+              </>
+            )}
+          </ul>
+        </div>
+        <div className="navbar-end">
+          {user ? (
+            <>
+              <div className="dropdown dropdown-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar"
+                >
+                  <div
+                    className="w-10 rounded-full tooltip tooltip-right"
+                    data-tip={user?.displayName}
+                  >
+                    <img alt="user image" src={user?.photoURL} />
+                  </div>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm gap-2 z-[100] dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow"
+                >
+                  <Link
+                    className="hover:bg-gray-200 p-2 font-semibold"
+                    to={"/my-artifacts"}
+                  >
+                    My Artifacts
+                  </Link>
+                  <Link
+                    to={"/liked-artifacts"}
+                    className="hover:bg-gray-200 font-semibold p-2"
+                  >
+                    Liked Artifacts
+                  </Link>
+                </ul>
               </div>
-              <button onClick={handleSubmitSignOut} className="btn bg-[#C4A484] hover:bg-[#766656] border-none text-white">
+              <button
+                onClick={handleSubmitSignOut}
+                className="btn bg-[#C4A484] hover:bg-[#766656] border-none text-white"
+              >
                 Logout
                 <FaSignOutAlt></FaSignOutAlt>
               </button>
-            </>         
-            : <Link to={"/signin"} className="btn">Signin</Link>
-          }
+            </>
+          ) : (
+            <Link to={"/signin"} className="btn">
+              Signin
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   );
